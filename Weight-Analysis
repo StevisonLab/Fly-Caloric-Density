@@ -1,0 +1,32 @@
+##Analysis of weight at day 7
+
+#Set working directory -- You can type out the path but I like to 
+#go to Session --> Set working directoring --> Choose working directory...
+setwd("~/")
+
+#Grab the data file from your computer. I sometimes having issues working from Box,so you may want to download
+#the file to your computer. When you run the below, a File explorer will appear and you can select the appropriate csv file
+#datum is an object -- we can choose any name we want -- it's just what we're going to call our data file from now on.
+datum=read.csv(file.choose())
+
+#Visualizing data. Because our x-axis is a numerical variable, R assumes a continuous variable. Is this appropriate?
+plot(Weight~Treatment,data=datum)
+
+
+#as.factor tells R to treat the variable as categorical which gets you a box plot
+plot(Weight~as.factor(Treatment),data=datum)
+
+#Running a linear model with treatment as a categorical variable. This SHOULD be a nested design -- we've
+#pseudoreplicated by sampling multiple individuals from only one vial per treatment
+results=lm(Weight~(as.factor(Treatment)),data=datum)
+
+#This is how we get our p-values -- i.e. see if we have significant differences.
+summary(results)
+
+#Relevel allows you to set the reference (i.e. which group we're comparing to, usually the control)
+results2=lm(Weight~relevel(as.factor(Treatment),ref="1"),data=datum)
+summary(results2)
+
+#Relevel to get last comparison which has not been made
+results3=lm(Weight~relevel(as.factor(Treatment),ref="2"),data=datum)
+summary(results3)
