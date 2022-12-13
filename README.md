@@ -1,5 +1,5 @@
 # Fly-Caloric-Density
-This repository contains code and files used in the manuscript "Responses of Drosophila pseudoobscura to diet manipulation of nutrient density." 
+This repository contains code and files used in the manuscript "Responses of _Drosophila pseudoobscura_ to diet manipulation of nutrient density." 
 
 Data and scripts used for the single-strain, MV2-25, analysis start with "MV225" while those used for the multi-strain data start with "Strain".
 
